@@ -3,43 +3,48 @@ package no.hvl.dat102.adt;
 import no.hvl.dat102.exception.EmptyCollectionException;
 
 
-public interface KoeADT<T>{
-   
-	/**
-	 * Legge til et element bak i køen.
-	 * @param element er elementet som blir satt inn i køen
-	 */
-    void innKoe (T element) ;
+public interface KoeADT<T> {
 
-   
     /**
-     * Fjerner og returnerer elementet foran i køen.
-     * @return elementet foran i køen
-     * @exception EmptyCollectionException unntak som kastes hvis køen er tom
+     * Legge til et element bak i kï¿½en.
+     *
+     * @param element er elementet som blir satt inn i kï¿½en
      */
-    
+    void innKoe(T element);
+
+
+    /**
+     * Fjerner og returnerer elementet foran i kï¿½en.
+     *
+     * @return elementet foran i kï¿½en
+     * @throws EmptyCollectionException unntak som kastes hvis kï¿½en er tom
+     */
+
     T utKoe();
 
- 
+
     /**
-     * Returnerer elementet foran i køen uten å fjerne det fra køen.
-     * @return elementet foran i køen
-     * @exception EmptyCollectionException unntak kastes hvis køen allerede er tom
+     * Returnerer elementet foran i kï¿½en uten ï¿½ fjerne det fra kï¿½en.
+     *
+     * @return elementet foran i kï¿½en
+     * @throws EmptyCollectionException unntak kastes hvis kï¿½en allerede er tom
      */
-    T foerste() ;
-   
-  
+    T foerste();
+
+
     /**
-     * Returnerer sann hvis denne køen ikke inneholder noen elementer.
-     * @return sann dersom køen er tom ellers usann
+     * Returnerer sann hvis denne kï¿½en ikke inneholder noen elementer.
+     *
+     * @return sann dersom kï¿½en er tom ellers usann
      */
     boolean erTom();
 
-   
-    /** 
-     * Returnerer antall elementer i køen.
-     * @return antall elementer i køen
+
+    /**
+     * Returnerer antall elementer i kï¿½en.
+     *
+     * @return antall elementer i kï¿½en
      */
     int antall();
-  
+
 }//

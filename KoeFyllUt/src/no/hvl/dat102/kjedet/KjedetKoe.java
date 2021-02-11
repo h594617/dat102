@@ -5,80 +5,100 @@ import no.hvl.dat102.exception.EmptyCollectionException;
 
 //********************************************************************
 // 
-//  Representerer en samling kø implementer vha kjedet struktur
+//  Representerer en samling kï¿½ implementer vha kjedet struktur
 //********************************************************************
 
 public class KjedetKoe<T> implements KoeADT<T> {
-	private int antall;
-	private LinearNode<T> foran, bak;
+    private int antall;
+    private LinearNode<T> foran, bak;
 
-	/******************************************************************
-	 * Oppretter en tom kø.
-	 ******************************************************************/
-	public KjedetKoe() {
-		antall = 0;
-		foran = bak = null;
-	}
+    /******************************************************************
+     * Oppretter en tom kï¿½.
+     ******************************************************************/
+    public KjedetKoe() {
+        antall = 0;
+        foran = bak = null;
+    }
 
-	/******************************************************************
-	 * Legger inn et spesifisert element i køen.
-	 ******************************************************************/
-	public void innKoe(T element) {
-		LinearNode<T> nyNode = new LinearNode<T>(element);
+    /******************************************************************
+     * Legger inn et spesifisert element i kï¿½en.
+     ******************************************************************/
+    public void innKoe(T element) {
+        LinearNode<T> nyNode = new LinearNode<T>(element);
 
-		//TODO
-	}
+        //TODO
 
-	/******************************************************************
-	 * Fjerner og returnerer elementet foran i køen.
-	 ******************************************************************/
-	public T utKoe() {
-		if (erTom())
-			throw new EmptyCollectionException("koe");
+        if (antall == 0) {
+            nyNode = foran = bak;
+            nyNode.setNeste(null);
+            antall++;
+        }
 
-		//TODO
-		return null;
-		
-	}
+        nyNode.setNeste(bak);
+        bak = nyNode;
+        antall++;
 
-	/******************************************************************
-	 * Returnerer elementet foran i køen ute å fjerne det.
-	 ******************************************************************/
-	public T foerste() {
-		if (erTom())
-			throw new EmptyCollectionException("koe");
 
-		//TODO
-		return null;
-		
-	}
+    }
 
-	/******************************************************************
-	 * Returnerer sann hvis køen er tom, usann ellers.
-	 ******************************************************************/
-	public boolean erTom() {
-		return (antall == 0);
-	}
+    /******************************************************************
+     * Fjerner og returnerer elementet foran i kï¿½en.
+     ******************************************************************/
+    public T utKoe() {
+        if (erTom())
+            throw new EmptyCollectionException("koe");
 
-	/******************************************************************
-	 * Returnerer antall elementer i køen.
-	 ******************************************************************/
-	public int antall() {
-		return antall;
-	}
+        LinearNode<T> utNode = new LinearNode<T>();
 
-	/******************************************************************
-	 * Returnerer en strengrepresentasjon av elementene i køen.
-	 ******************************************************************/
-	public String toString() {
-		String resultat = "";
-		LinearNode<T> aktuell = foran;
+        for (int i = 0; i < antall-1; i++) {
+            utNode.getNeste();
 
-		while (aktuell != null) {
-			resultat = resultat + (aktuell.getElement()).toString() + "\n";
-			aktuell = aktuell.getNeste();
-		}
+        }
+        foran = utNode;
+        utNode.setNeste(null);
+        antall--;
 
-		return resultat;
-	}
+        return utNode.getElement();
+
+    }
+
+    /******************************************************************
+     * Returnerer elementet foran i kï¿½en ute ï¿½ fjerne det.
+     ******************************************************************/
+    public T foerste() {
+        if (erTom())
+            throw new EmptyCollectionException("koe");
+
+        return this.foran.getElement();
+
+    }
+
+    /******************************************************************
+     * Returnerer sann hvis kï¿½en er tom, usann ellers.
+     ******************************************************************/
+    public boolean erTom() {
+        return (antall == 0);
+    }
+
+    /******************************************************************
+     * Returnerer antall elementer i kï¿½en.
+     ******************************************************************/
+    public int antall() {
+        return antall;
+    }
+
+    /******************************************************************
+     * Returnerer en strengrepresentasjon av elementene i kï¿½en.
+     ******************************************************************/
+    public String toString() {
+        String resultat = "";
+        LinearNode<T> aktuell = foran;
+
+        while (aktuell != null) {
+            resultat = resultat + (aktuell.getElement()).toString() + "\n";
+            aktuell = aktuell.getNeste();
+        }
+
+        return resultat;
+    }
 }// class
